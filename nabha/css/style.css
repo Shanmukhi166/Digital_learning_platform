@@ -1,0 +1,369 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background:#f5f7f2;
+  color:#222;
+  line-height:1.6;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+
+  position:sticky;
+  top:0;
+
+  background:#1b5e20;
+
+  padding:18px 40px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  flex-wrap:wrap;
+
+  z-index:1000;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+nav h2{
+
+  color:white;
+  font-size:28px;
+}
+
+nav a,
+nav button{
+
+  color:white;
+
+  text-decoration:none;
+
+  margin-left:20px;
+
+  font-size:17px;
+
+  transition:0.3s;
+
+  background:none;
+  border:none;
+
+  cursor:pointer;
+}
+
+nav a:hover,
+nav button:hover{
+
+  color:#c8e6c9;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero{
+
+  padding:120px 20px;
+
+  text-align:center;
+
+  background:
+  linear-gradient(rgba(0,0,0,0.55),
+  rgba(0,0,0,0.55)),
+
+  url("https://www.shutterstock.com/image-photo/group-village-kids-busy-using-600nw-2148740807.jpg");
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  color:white;
+}
+
+.hero p{
+
+  font-size:28px;
+
+  font-weight:bold;
+
+  color:white;
+
+  max-width:900px;
+
+  margin:auto;
+
+  text-shadow:
+  2px 2px 8px rgba(0,0,0,0.7);
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features,
+.cards-container{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(260px,1fr));
+
+  gap:25px;
+
+  padding:50px 40px;
+}
+
+.card{
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:18px;
+
+  box-shadow:
+  0 4px 12px rgba(0,0,0,0.08);
+
+  transition:0.3s;
+
+  border-top:5px solid #43a047;
+}
+
+.card:hover{
+
+  transform:translateY(-8px);
+}
+
+.card h3{
+
+  color:#2e7d32;
+
+  margin-bottom:15px;
+
+  font-size:24px;
+}
+
+.card p{
+
+  color:#555;
+
+  font-size:16px;
+}
+
+/* =========================
+   FORM CONTAINER
+========================= */
+
+.form-container{
+
+  max-width:420px;
+
+  margin:60px auto;
+
+  background:white;
+
+  padding:35px;
+
+  border-radius:15px;
+
+  box-shadow:
+  0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-container h2{
+
+  text-align:center;
+
+  margin-bottom:25px;
+
+  color:#1b5e20;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+select{
+
+  width:100%;
+
+  padding:14px;
+
+  margin-bottom:18px;
+
+  border:1px solid #ccc;
+
+  border-radius:8px;
+
+  font-size:16px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button,
+.btn{
+
+  background:#43a047;
+
+  color:white;
+
+  border:none;
+
+  padding:14px 25px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  transition:0.3s;
+}
+
+button:hover,
+.btn:hover{
+
+  background:#2e7d32;
+
+  transform:scale(1.03);
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+#message{
+
+  margin-top:15px;
+
+  text-align:center;
+
+  color:red;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+.page-title{
+
+  text-align:center;
+
+  margin-top:40px;
+
+  color:#1b5e20;
+
+  font-size:38px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media screen and (max-width:768px){
+
+  nav{
+
+    padding:15px 20px;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+  }
+
+  nav a,
+  nav button{
+
+    margin:10px 0;
+  }
+
+  .hero{
+
+  width:100%;
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  background-image:
+  linear-gradient(rgba(0,0,0,0.15),
+  rgba(0,0,0,0.15)),
+
+  url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop");
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  color:white;
+
+  padding:20px;
+}
+  .hero p{
+
+  font-size:30px;
+
+  font-weight:bold;
+
+  color:white;
+
+  max-width:1000px;
+
+  margin:auto;
+
+  text-shadow:
+  2px 2px 10px rgba(0,0,0,0.5);
+}
+}
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-bar{
+
+  width:100%;
+
+  background:#ddd;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  height:30px;
+
+  margin-top:10px;
+}
+
+.progress-fill{
+
+  height:100%;
+
+  background:#43a047;
+
+  color:white;
+
+  text-align:center;
+
+  line-height:30px;
+
+  font-weight:bold;
+
+  border-radius:20px;
+
+  transition:1s;
+}

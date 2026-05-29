@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Teacher Dashboard</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body onload="loadTeacherDashboard()">
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <h2>Teacher Dashboard</h2>
+
+    <div>
+
+      <a href="index.html">Home</a>
+
+      <a href="courses.html">Courses</a>
+
+      <a href="offline.html">Offline Mode</a>
+
+      <button onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <p id="teacherMessage">
+
+      Loading Teacher Dashboard...
+
+    </p>
+
+  </section>
+
+  <!-- OVERVIEW -->
+
+  <h1 class="page-title">
+    Teacher Overview
+  </h1>
+
+  <div class="cards-container">
+
+    <div class="card">
+
+      <h3>Total Students</h3>
+
+      <p id="totalStudents"
+      style="font-size:40px;">
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Courses Managed</h3>
+
+      <p id="coursesManaged"
+      style="font-size:40px;">
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Average Performance</h3>
+
+      <p id="averagePerformance"
+      style="font-size:40px;">
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- STUDENT PERFORMANCE -->
+
+  <h1 class="page-title">
+    Student Performance
+  </h1>
+
+  <div class="form-container">
+
+    <table
+      width="100%"
+      cellpadding="12"
+      style="border-collapse:collapse;">
+
+      <thead>
+
+        <tr
+        style="
+        background:#43a047;
+        color:white;
+        ">
+
+          <th>Student</th>
+
+          <th>Subject</th>
+
+          <th>Score</th>
+
+          <th>Status</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="studentTable">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- COURSE ANALYTICS -->
+
+  <h1 class="page-title">
+    Course Analytics
+  </h1>
+
+  <div class="form-container"
+  id="analyticsContainer">
+
+  </div>
+
+  <!-- QUICK ACTIONS -->
+
+  <h1 class="page-title">
+    Quick Actions
+  </h1>
+
+  <div class="cards-container">
+
+    <div class="card">
+
+      <h3>Manage Courses</h3>
+
+      <p>
+        Add and manage learning materials.
+      </p>
+
+      <br>
+
+      <a href="courses.html"
+      class="btn">
+
+        Open
+
+      </a>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Offline Content</h3>
+
+      <p>
+        Manage downloadable lessons.
+      </p>
+
+      <br>
+
+      <a href="offline.html"
+      class="btn">
+
+        Open
+
+      </a>
+
+    </div>
+
+  </div>
+
+  <script src="js/auth.js"></script>
+
+  <script src="js/teacher.js"></script>
+
+</body>
+</html>

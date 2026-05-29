@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Student Dashboard</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body onload="loadStudentDashboard()">
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <h2>Student Dashboard</h2>
+
+    <div>
+
+      <a href="index.html">Home</a>
+
+      <a href="courses.html">Courses</a>
+
+      <a href="offline.html">Offline Mode</a>
+
+      <button onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <p id="studentMessage">
+      Loading Student Performance...
+    </p>
+
+  </section>
+
+  <!-- OVERVIEW -->
+
+  <h1 class="page-title">
+    Learning Overview
+  </h1>
+
+  <div class="cards-container">
+
+    <div class="card">
+
+      <h3>Courses Enrolled</h3>
+
+      <p id="coursesCount"
+      style="font-size:40px;">
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Lessons Completed</h3>
+
+      <p id="lessonsCompleted"
+      style="font-size:40px;">
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Average Quiz Score</h3>
+
+      <p id="quizScore"
+      style="font-size:40px;">
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- PROGRESS -->
+
+  <h1 class="page-title">
+    Course Performance
+  </h1>
+
+  <div class="form-container"
+  id="progressContainer">
+
+  </div>
+
+  <script src="js/auth.js"></script>
+
+  <script src="js/student.js"></script>
+
+</body>
+</html>

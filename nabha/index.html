@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rural Digital Learning Platform</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+
+    /* =========================
+       FULL SCREEN POPUP
+    ========================== */
+
+    .popup-overlay {
+
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100vh;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+      url("https://thumbs.dreamstime.com/b/rural-education-india-23634700.jpg");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      z-index: 9999;
+    }
+
+    .popup-box {
+
+      width: 100%;
+      height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+
+      padding: 40px;
+
+      color: white;
+    }
+
+    /* =========================
+       TYPING ANIMATION
+    ========================== */
+
+    .typing-container {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .typing-line1,
+    .typing-line2 {
+
+      overflow: hidden;
+      white-space: nowrap;
+
+      font-weight: bold;
+      letter-spacing: 2px;
+
+      width: 0;
+    }
+
+    /* FIRST LINE */
+
+    .typing-line1 {
+
+      font-size: 60px;
+
+      animation:
+      typing1 4s steps(30, end) forwards;
+    }
+
+    /* SECOND LINE */
+
+    .typing-line2 {
+
+      font-size: 52px;
+
+      margin-top: 15px;
+
+      animation:
+      typing2 4s steps(40, end) forwards;
+
+      animation-delay: 4s;
+
+      animation-fill-mode: forwards;
+    }
+
+    /* TYPING EFFECT */
+
+    @keyframes typing1 {
+
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes typing2 {
+
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    /* =========================
+       DESCRIPTION
+    ========================== */
+
+    .popup-box p {
+
+      font-size: 24px;
+
+      margin-top: 35px;
+      margin-bottom: 40px;
+
+      animation: fadeIn 3s ease;
+    }
+
+    /* =========================
+       BUTTON
+    ========================== */
+
+    .popup-box button {
+
+      background: #43a047;
+      color: white;
+
+      border: none;
+
+      padding: 16px 40px;
+
+      font-size: 20px;
+      font-weight: bold;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+      animation: fadeInUp 4s ease;
+    }
+
+    .popup-box button:hover {
+
+      transform: scale(1.08);
+
+      background: #66bb6a;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================== */
+
+    @keyframes fadeIn {
+
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       MOBILE RESPONSIVE
+    ========================== */
+
+    @media screen and (max-width: 768px) {
+
+      .typing-line1 {
+
+        font-size: 30px;
+      }
+
+      .typing-line2 {
+
+        font-size: 24px;
+      }
+
+      .popup-box p {
+
+        font-size: 18px;
+      }
+
+      .popup-box button {
+
+        width: 80%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       POPUP SCREEN
+  ========================== -->
+
+  <div class="popup-overlay" id="startupPopup">
+
+    <div class="popup-box">
+
+      <div class="typing-container">
+
+        <div class="typing-line1">
+          Digital Learning Platform
+        </div>
+
+        <div class="typing-line2">
+          for Rural School Students in Nabha
+        </div>
+
+      </div>
+
+      <p>
+        Empowering Indian village students through accessible digital education.
+      </p>
+
+      <button onclick="closePopup()">
+        Get Started
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       MAIN WEBSITE
+  ========================== -->
+
+  <nav>
+
+    <h2>Rural Learn</h2>
+
+    <a href="index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+
+  </nav>
+
+  <section class="hero">
+
+  <p style="font-weight: bold; font-size: 22px;">
+    Helping rural students access simple, low-internet learning resources.
+  </p>
+
+</section>
+
+  <section class="features">
+
+    <div class="card">
+
+      <h3>Low Internet Support</h3>
+
+      <p>
+        Simple pages designed for slow internet areas.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Courses</h3>
+
+      <p>
+        Students can view available courses easily.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Offline Mode</h3>
+
+      <p>
+        Downloaded lessons can be shown when offline.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       SCRIPT
+  ========================== -->
+  <script>
+
+  const popup =
+    document.getElementById("startupPopup");
+
+  /* SHOW POPUP ONLY FIRST TIME */
+
+  if (sessionStorage.getItem("popupShown")) {
+
+    popup.style.display = "none";
+  }
+
+  function closePopup() {
+
+    popup.style.display = "none";
+
+    sessionStorage.setItem(
+      "popupShown",
+      "true"
+    );
+  }
+
+</script>
+
+</body>
+</html>
