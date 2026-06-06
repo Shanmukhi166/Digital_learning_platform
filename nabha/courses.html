@@ -16,6 +16,30 @@
 <h1 class="page-title">Available Courses</h1>
 
 <div id="coursesList" class="cards-container"></div>
+<div id="courseModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+
+    <h3>Lesson Modules</h3>
+    <ul>
+      <li>Module 1: Introduction</li>
+<li>Module 2: Basic Concepts</li>
+<li>Module 3: Practice Exercises</li>
+<li>Module 4: Real Life Examples</li>
+<li>Module 5: Quiz Assessment</li>
+<li>Module 6: Final Assignment</li>
+    </ul>
+
+    <button onclick="enrollCourse(this)">Enroll</button>
+
+    <div class="progress-container" id="progressContainer">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+</div>
 
 <script src="js/config.js"></script>
 <script src="js/courses.js"></script>

@@ -1,47 +1,43 @@
-function loadStudentDashboard() {
+async function loadStudentDashboard() {
 
   /* STUDENT DATA */
 
-  const student = {
+  const response = await fetch(
+  "http://localhost:5000/api/progress"
+);
 
-    name: "Rahul",
+const progressData =
+  await response.json();
 
-    coursesEnrolled: 5,
+const averageScore =
+  progressData.reduce(
+    (sum, item) => sum + item.quiz_score,
+    0
+  ) / progressData.length;
 
-    lessonsCompleted: 18,
+const student = {
 
-    averageScore: 82,
+  name: "Abhi",
 
-    performance: [
+  coursesEnrolled:
+    progressData.length,
 
-      {
-        subject: "Mathematics",
-        progress: 85
-      },
+  lessonsCompleted: 18,
 
-      {
-        subject: "Science",
-        progress: 70
-      },
+  averageScore:
+    Math.round(averageScore),
 
-      {
-        subject: "English",
-        progress: 90
-      },
+  performance:
+    progressData.map(item => ({
 
-      {
-        subject: "Computer Basics",
-        progress: 65
-      },
+      subject:
+        item.course_title,
 
-      {
-        subject: "Social Studies",
-        progress: 75
-      }
+      progress:
+        item.completion_percentage
 
-    ]
-  };
-
+    }))
+};
   /* HERO MESSAGE */
 
   document.getElementById(

@@ -1,76 +1,14 @@
+let selectedCourseButton = null;
 async function loadCourses() {
 
   const coursesList =
     document.getElementById("coursesList");
 
-  const courses = [
+  const response = await fetch(
+  "http://localhost:5000/api/courses"
+   );
 
-    {
-      title: "Mathematics Basics",
-
-      description:
-      "Learn simple mathematics concepts for school students.",
-
-      language: "English",
-
-      teacher_name: "Ravi Sir",
-
-      image: "images/maths.jpeg"
-    },
-
-    {
-      title: "Science Learning",
-
-      description:
-      "Easy science lessons with practical examples.",
-
-      language: "Hindi",
-
-      teacher_name: "Anita Madam",
-
-      image: "images/science.jpeg"
-    },
-
-    {
-      title: "English Speaking",
-
-      description:
-      "Improve communication and speaking skills.",
-
-      language: "English",
-
-      teacher_name: "Karan Sir",
-
-      image: "images/english.jpeg"
-    },
-
-    {
-      title: "Computer Basics",
-
-      description:
-      "Introduction to computers and digital learning.",
-
-      language: "English",
-
-      teacher_name: "Meena Madam",
-
-      image: "images/computer.jpeg"
-    },
-
-    {
-      title: "Social Studies",
-
-      description:
-      "Learn history, geography and civics in a simple way.",
-
-      language: "English",
-
-      teacher_name: "Gurpreet Sir",
-
-      image: "images/social.jpeg"
-    }
-
-  ];
+const courses = await response.json();
 
   coursesList.innerHTML = "";
 
@@ -84,7 +22,7 @@ async function loadCourses() {
     card.innerHTML = `
 
       <img
-        src="${course.image}"
+       src="${course.image}"
 
         style="
           width:100%;
@@ -115,11 +53,49 @@ async function loadCourses() {
 
       <br>
 
-      <button>
-        Enroll Now
-      </button>
+     <button onclick="openModal(this, '${course.title}', '${course.description}')">
+  Enroll Now
+</button>
     `;
 
     coursesList.appendChild(card);
   });
+}
+function openModal(button, title, description) {
+  selectedCourseButton = button;
+
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalDescription").innerText = description;
+
+  document.getElementById("courseModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("courseModal").style.display = "none";
+
+  document.getElementById("progressContainer").style.display = "none";
+  document.getElementById("progressBar").style.width = "0%";
+}
+
+function enrollCourse(button) {
+  button.disabled = true;
+  button.innerText = "Enrolling...";
+
+  document.getElementById("progressContainer").style.display = "block";
+
+  setTimeout(() => {
+    document.getElementById("progressBar").style.width = "100%";
+  }, 100);
+
+  setTimeout(() => {
+  alert("Enrolled successfully!");
+
+  selectedCourseButton.innerText = "Enrolled";
+  selectedCourseButton.disabled = true;
+
+  button.innerText = "Enroll";
+  button.disabled = false;
+
+  closeModal();
+}, 2200);
 }

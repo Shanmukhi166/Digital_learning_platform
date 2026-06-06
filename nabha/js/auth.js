@@ -2,7 +2,7 @@
    REGISTER USER
 ========================= */
 
-function registerUser() {
+async function registerUser() {
 
   const name =
     document.getElementById("name").value;
@@ -16,41 +16,55 @@ function registerUser() {
   const role =
     document.getElementById("role").value;
 
-  /* USER OBJECT */
+  try {
 
-  const user = {
+    const response = await fetch(
+      "http://localhost:5000/api/auth/register",
+      {
+        method: "POST",
 
-    name,
-    email,
-    password,
-    role
-  };
+        headers: {
+          "Content-Type": "application/json"
+        },
 
-  /* SAVE USER */
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          role
+        })
+      }
+    );
 
-  localStorage.setItem(
-    email,
-    JSON.stringify(user)
-  );
+    const data = await response.json();
 
-  document.getElementById(
-    "message"
-  ).innerText =
-    "Registration Successful!";
+    document.getElementById(
+      "message"
+    ).innerText = data.message;
 
-  setTimeout(() => {
+    setTimeout(() => {
 
-    window.location.href =
-      "login.html";
+      window.location.href =
+        "login.html";
 
-  }, 1000);
+    }, 1000);
+
+  }
+
+  catch (error) {
+
+    console.log(error);
+
+  }
+
 }
+
 
 /* =========================
    LOGIN USER
 ========================= */
 
-function loginUser() {
+async function loginUser() {
 
   const email =
     document.getElementById("email").value;
@@ -58,75 +72,66 @@ function loginUser() {
   const password =
     document.getElementById("password").value;
 
-  /* ADMIN LOGIN */
+  try {
 
-  if (
-    email === "admin@nabha.com" &&
-    password === "admin123"
-  ) {
+    const response = await fetch(
+      "http://localhost:5000/api/auth/login",
+      {
+        method: "POST",
 
-    localStorage.setItem(
-      "loggedInUser",
-      "admin"
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          email,
+          password
+        })
+      }
     );
 
-    window.location.href =
-      "admin-dashboard.html";
+    const data = await response.json();
 
-    return;
+    if (data.token) {
+
+      localStorage.setItem(
+        "token",
+        data.token
+      );
+
+      document.getElementById(
+        "message"
+      ).innerText =
+        "Login Successful";
+
+      setTimeout(() => {
+
+        window.location.href =
+          "student-dashboard.html";
+
+      }, 1000);
+
+    }
+
+    else {
+
+      document.getElementById(
+        "message"
+      ).innerText =
+        data.message;
+
+    }
+
   }
 
-  /* GET USER */
+  catch (error) {
 
-  const storedUser =
-    localStorage.getItem(email);
+    console.log(error);
 
-  if (!storedUser) {
-
-    document.getElementById(
-      "message"
-    ).innerText =
-      "User not found";
-
-    return;
   }
 
-  const user =
-    JSON.parse(storedUser);
-
-  /* CHECK PASSWORD */
-
-  if (user.password !== password) {
-
-    document.getElementById(
-      "message"
-    ).innerText =
-      "Wrong Password";
-
-    return;
-  }
-
-  /* SAVE LOGIN */
-
-  localStorage.setItem(
-    "loggedInUser",
-    JSON.stringify(user)
-  );
-
-  /* REDIRECT */
-
-  if (user.role === "teacher") {
-
-    window.location.href =
-      "teacher-dashboard.html";
-  }
-
-  else {
-
-    window.location.href =
-      "student-dashboard.html";
-  }
 }
+
 
 /* =========================
    LOGOUT
@@ -134,9 +139,7 @@ function loginUser() {
 
 function logout() {
 
-  localStorage.removeItem(
-    "loggedInUser"
-  );
+  localStorage.removeItem("token");
 
   window.location.href =
     "login.html";

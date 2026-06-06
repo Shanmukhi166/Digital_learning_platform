@@ -1,78 +1,61 @@
-function loadTeacherDashboard() {
+async function loadTeacherDashboard() {
 
   /* TEACHER DATA */
 
-  const teacher = {
+  const response = await fetch(
+  "http://localhost:5000/api/progress"
+);
 
-    name: "Anita Madam",
+const progressData =
+  await response.json();
 
-    totalStudents: 120,
+const teacher = {
 
-    coursesManaged: 5,
+  name: "Teacher",
 
-    averagePerformance: 78,
+  totalStudents: progressData.length,
 
-    students: [
+  coursesManaged:
+  [...new Set(
+    progressData.map(
+      item => item.course_title
+    )
+  )].length,
 
-      {
-        name: "Rahul",
-        subject: "Mathematics",
-        score: 85,
-        status: "Excellent"
-      },
+averagePerformance:
+  Math.round(
+    progressData.reduce(
+      (sum, item) =>
+        sum + item.quiz_score,
+      0
+    ) / progressData.length
+  ),
 
-      {
-        name: "Priya",
-        subject: "Science",
-        score: 72,
-        status: "Good"
-      },
+  students: progressData.map(item => ({
 
-      {
-        name: "Aman",
-        subject: "English",
-        score: 90,
-        status: "Excellent"
-      },
+    name: item.student_name,
 
-      {
-        name: "Simran",
-        subject: "Computer Basics",
-        score: 65,
-        status: "Average"
-      }
+    subject: item.course_title,
 
-    ],
+    score: item.quiz_score,
 
-    analytics: [
+    status:
+      item.quiz_score >= 80
+        ? "Excellent"
+        : item.quiz_score >= 60
+        ? "Good"
+        : "Average"
 
-      {
-        course: "Mathematics",
-        progress: 85
-      },
+  })),
 
-      {
-        course: "Science",
-        progress: 70
-      },
+  analytics: progressData.map(item => ({
 
-      {
-        course: "English",
-        progress: 90
-      },
+  course: item.course_title,
 
-      {
-        course: "Computer Basics",
-        progress: 65
-      },
+  progress: item.completion_percentage
 
-      {
-        course: "Social Studies",
-        progress: 75
-      }
-
-    ]
-  };
+}))
+};
 
   /* HERO */
 
